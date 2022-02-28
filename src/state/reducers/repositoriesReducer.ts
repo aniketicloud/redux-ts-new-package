@@ -1,7 +1,15 @@
-interface RepositoriesState {
-  loading: boolean;
-  error: string | null;
-  data: string[];
+interface SearchRepositories {
+  type: "search_repositories";
+}
+
+interface SearchRepositoriesSuccessAction {
+  type: "search_repositories_success";
+  payload: string[];
+}
+
+interface SearchRepositoriesError {
+  type: "search_repositories_error";
+  payload: string;
 }
 
 interface Action {

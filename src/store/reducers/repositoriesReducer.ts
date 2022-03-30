@@ -1,23 +1,33 @@
-interface RepositoriesState {
-  loading: boolean;
-  error: string | null;
-  data: string[];
-}
-
-interface Action {
-  type: string;
-  payload?: any;
-}
-
 enum ActionTypes {
   SEARCH_REPOSITORIES = "search_repositories",
   SEARCH_REPOSITORIES_SUCCESS = "search_repositories_success",
   SEARCH_REPOSITORIES_ERROR = "search_repositories_error",
 }
 
+interface SearchRepositoriesAction {
+  type: ActionTypes.SEARCH_REPOSITORIES;
+}
+
+interface SearchRepositoriesSuccessAction {
+  type: ActionTypes.SEARCH_REPOSITORIES_SUCCESS;
+  payload: string[];
+}
+interface SearchRepositoriesErrorAction {
+  type: ActionTypes.SEARCH_REPOSITORIES_ERROR;
+  payload: string;
+}
+interface RepositoriesState {
+  loading: boolean;
+  error: string | null;
+  data: string[];
+}
+
 const reducer = (
   state: RepositoriesState,
-  action: Action
+  action:
+    | SearchRepositoriesAction
+    | SearchRepositoriesSuccessAction
+    | SearchRepositoriesErrorAction
 ): RepositoriesState => {
   switch (action.type) {
     case ActionTypes.SEARCH_REPOSITORIES:

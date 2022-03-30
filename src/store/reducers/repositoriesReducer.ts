@@ -16,6 +16,11 @@ interface SearchRepositoriesErrorAction {
   type: ActionTypes.SEARCH_REPOSITORIES_ERROR;
   payload: string;
 }
+
+type Action =
+  | SearchRepositoriesAction
+  | SearchRepositoriesSuccessAction
+  | SearchRepositoriesErrorAction;
 interface RepositoriesState {
   loading: boolean;
   error: string | null;
@@ -24,10 +29,7 @@ interface RepositoriesState {
 
 const reducer = (
   state: RepositoriesState,
-  action:
-    | SearchRepositoriesAction
-    | SearchRepositoriesSuccessAction
-    | SearchRepositoriesErrorAction
+  action: Action
 ): RepositoriesState => {
   switch (action.type) {
     case ActionTypes.SEARCH_REPOSITORIES:

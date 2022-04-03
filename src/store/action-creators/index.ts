@@ -1,12 +1,12 @@
 import axios from "axios";
+import { Dispatch } from "@reduxjs/toolkit";
 import { ActionType } from "../action-types";
-// import { ActionType } from "../action-types";
-// import { Action } from "../actions";
+import { Action } from "../actions";
 
 const npm_search_url: string = "https://registry.npmjs.org/-/v1/search";
 
 export const search_repositories = (searchTerm: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SEARCH_REPOSITORIES,
     });
@@ -18,7 +18,7 @@ export const search_repositories = (searchTerm: string) => {
         },
       });
 
-      const package_names = data.objects.map(
+      const package_names: string[] = data.objects.map(
         (object: { package: { name: string } }) => object.package.name
       );
 
@@ -26,7 +26,7 @@ export const search_repositories = (searchTerm: string) => {
         type: ActionType.SEARCH_REPOSITORIES_SUCCESS,
         payload: package_names,
       });
-    } catch (err) {
+    } catch (err: any) {
       dispatch({
         type: ActionType.SEARCH_REPOSITORIES_ERROR,
         payload: err.message,

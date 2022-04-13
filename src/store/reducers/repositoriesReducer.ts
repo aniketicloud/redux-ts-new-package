@@ -22,6 +22,8 @@ export const repositoriesReducer = (
       return { loading: true, error: null, data: [] };
 
     case ActionType.SEARCH_REPOSITORIES_SUCCESS:
+      console.log(action);
+
       return { loading: false, error: null, data: action.payload };
 
     case ActionType.SEARCH_REPOSITORIES_ERROR:

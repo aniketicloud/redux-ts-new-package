@@ -19,7 +19,7 @@ export const repositoriesReducer = (
 ): RepositoriesState => {
   switch (action.type) {
     case ActionType.SEARCH_REPOSITORIES:
-      return { loading: false, error: null, data: [] };
+      return { loading: true, error: null, data: [] };
 
     case ActionType.SEARCH_REPOSITORIES_SUCCESS:
       return { loading: false, error: null, data: action.payload };
